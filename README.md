@@ -1,2 +1,0 @@
-# Proyecto-Taller
-Axel/Mauro
