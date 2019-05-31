@@ -21,39 +21,35 @@ class venprincipal:
         self.venprincipal.resizable(width=NO,height=NO)
         self.fondo1=PhotoImage(file="carro vista.png")
         self.lblfondo1 = Label(self.venprincipal,image=self.fondo1).place(x=0,y=0)
+  
 
-        
-    def botones(self):    
-
-        verEscuderias = Button(self.venprincipal,text='Ver Escuderias',command=lambda:self.openvesc(),fg='white',bg='blue', font=('Agency FB',12))
+        verEscuderias = Button(self.venprincipal,text='Escuderias',command=lambda:self.opencesc(self.venprincipal),fg='white',bg='blue', font=('Agency FB',12))
         verEscuderias.place(x=200,y=100)
 
-        Pilotos = Button(self.venprincipal,text='Ingresar Pilotos',command=lambda:self.openpiloto(),fg='white',bg='blue', font=('Agency FB',12))
+        Pilotos = Button(self.venprincipal,text='Ingresar Pilotos',command=lambda:self.openpiloto(self.venprincipal),fg='white',bg='blue', font=('Agency FB',12))
         Pilotos.place(x=300,y=100)
 
         AboutBtn = Button(self.venprincipal,text='About',command=lambda:self.openabout(),fg='white',bg='blue', font=('Agency FB',12))
         AboutBtn.place(x=400,y=100)
 
-        crearEscuderias = Button(self.venprincipal,text='Crear Escuderias',command=lambda:self.opencesc(),fg='white',bg='blue', font=('Agency FB',12))
-        crearEscuderias.place(x=100,y=100)
+        TestBtn = Button(self.venprincipal,text="Test Drive",command=lambda:self.TestDrive(self.venprincipal),fg="red",bg= "Grey")
+        TestBtn.place(x=360,y=500)
 
         salirBtn = Button(self.venprincipal,text="SALIR",command=lambda:self.salir(self.venprincipal),fg="red",bg= "Grey")
         salirBtn.place(x=360,y=500)
 
-    def openvesc(self):
-        venverescuderia = ver
-        venverescuderia.ver()
         
-    def openpiloto(self):
-        venopenpiloto = venpiloto
-        venopenpiloto.venpiloto()
+    def openpiloto(self,venprincipal):
+        VenPilotos(self.venprincipal)
 
     def openabout(self):
         VenAbout(self.venprincipal)
 
-    def opencesc(self):
-        venopencesc = crear
-        venopencesc.crear()
+    def opencesc(self,venprincipal):
+        Escuderias(self.venprincipal)
+
+    def TestDrive(self, venprincipal):
+        TestWin(self.venprincipal)
 
     def salir(self, venprincipal):
         venprincipal.destroy()
@@ -67,30 +63,36 @@ class VenAbout:
         self.venabout=Toplevel()
         venprincipal.withdraw()
         self.venabout.title('About')
-        self.venabout.minsize(1000,700)
+        self.venabout.minsize(500,350)
         self.venabout.resizable(width=NO,height=NO)
 
-    
+        salirBtn = Button(self.venabout,text="SALIR",command=lambda:self.salir(self.venabout,venprincipal),fg="red",bg= "Grey")
+        salirBtn.place(x=360,y=500)
 
-main = venprincipal()
-main.botones()  
-#main.setMainloop()     
-    
-"""
-class VenAbout:
-    
-    def __init__(self):
-        self.venabout=Toplevel()
-        self.venprincipal.withdraw()
-        self.crear.withdraw()
-        self.ver.withdraw()
-        self.about.withdraw()
-        self.venabout.title('About')
-        self.venabout.minsize(1000,700)
-        self.venabout.resizable(width=NO,height=NO)
-        
+    def salir(self, venabout,venprincipal):
+        venprincipal.deiconify()
+        venabout.destroy()
+        venprincipal.deiconify
+
 class Escuderias:
 
+    def __init__(self,venprincipal):
+        self.escuderias=Toplevel()
+        venprincipal.withdraw()
+        self.escuderias.title('Escuderias')
+        self.escuderias.minsize(1000,700)
+        self.escuderias.resizable(width=NO,height=NO)
+  
+        crearEscuderias = Button(self.escuderias,text='Crear Escuderias',command=lambda:self.openvesc(self.escuderias),fg='white',bg='blue', font=('Agency FB',12))
+        crearEscuderias.place(x=100,y=100)
+        
+    def openvesc(self,escuderias):
+        self.crearesc=Toplevel()
+        escuderias.withdraw()
+        self.crearesc.title('Nueva Escuderia')
+        self.crearesc.minsize(1000,700)
+        self.crearesc.resizable(width=NO,height=NO)
+    
     def ver(self):
         self.venver=Toplevel()
         self.venprincipal.withdraw()
@@ -111,24 +113,29 @@ class Escuderias:
         self.vencrear.title('Crear Piloto')
         self.vencrear.minsize(1000,700)
         self.vencrear.resizable(width=NO,height=NO)
-        
+
 class VenPilotos:
 
-    def __init__(self):
+    def __init__(self,venprincipal):
         self.venpiloto=Toplevel()
-        self.venprincipal.withdraw()
-        self.crear.withdraw()
-        self.ver.withdraw()
-        self.about.withdraw()
+        venprincipal.withdraw()
         self.venpiloto.title('Piloto')
         self.venpiloto.minsize(1000,700)
         self.venpiloto.resizable(width=NO,height=NO)
 
+class TestWin:
 
-main = venprincipal()
-main.botones()  
-main.setMainloop()
+    def __init__(self,venprincipal):
+        self.venpiloto=Toplevel()
+        venprincipal.withdraw()
+        self.venpiloto.title('Test Drive')
+        self.venpiloto.minsize(1000,700)
+        self.venpiloto.resizable(width=NO,height=NO)
 
+    
+main = venprincipal() 
+#main.setMainloop()     
+    
 
 
 #import pickle
@@ -166,4 +173,3 @@ main.setMainloop()
 #tk.Button(root, text='Toggle entry', command=toggle_entry).grid(row=0, column=0)
 #root.mainloop()
 
-"""
