@@ -13,7 +13,6 @@ from WiFiClient import NodeMCU
 
 
 class venprincipal:
-
     def __init__(self):
         
         self.venprincipal = Tk()
@@ -22,6 +21,22 @@ class venprincipal:
         self.venprincipal.resizable(width=NO,height=NO)
         self.fondo1=PhotoImage(file="carro vista.png")
         self.lblfondo1 = Label(self.venprincipal,image=self.fondo1).place(x=0,y=0)
+    def botones(self):    
+
+        verEscuderias = Button(self.venprincipal,text='Ver Escuderias',command=lambda:openvesc(None),fg='white',bg='blue', font=('Agency FB',12))
+        verEscuderias.place(x=200,y=100)
+
+        Pilotos = Button(self.venprincipal,text='Ingresar Pilotos',command=lambda:openpiloto(None),fg='white',bg='blue', font=('Agency FB',12))
+        Pilotos.place(x=300,y=100)
+
+        AboutBtn = Button(self.venprincipal,text='About',command=lambda:openabout(None),fg='white',bg='blue', font=('Agency FB',12))
+        AboutBtn.place(x=400,y=100)
+
+        crearEscuderias = Button(self.venprincipal,text='Crear Escuderias',command=lambda:opencesc(None),fg='white',bg='blue', font=('Agency FB',12))
+        crearEscuderias.place(x=100,y=100)
+
+        salirBtn = Button(self.venprincipal,text="SALIR",command=lambda:salir(None),fg="red",bg= "Grey")
+        salirBtn.place(x=360,y=500)
 
     def openvesc(self):
         venverescuderia = ver
@@ -39,28 +54,13 @@ class venprincipal:
         venopencesc = crear
         venopencesc.crear()
 
-    def salir():
-        venprincipal.destroy()
+    def salir(self):
+        venprincipal().destroy()
 
     def setMainloop(self):
         self.venprincipal.mainloop()
         
-    def botones(self):    
-
-        self.verEscuderias = Button(self.venprincipal,text='Ver Escuderias',command=lambda:openvesc(None),fg='white',bg='blue', font=('Agency FB',12))
-        self.verEscuderias.place(x=200,y=100)
-
-        self.Pilotos = Button(self.venprincipal,text='Ingresar Pilotos',command=lambda:openpiloto(None),fg='white',bg='blue', font=('Agency FB',12))
-        self.Pilotos.place(x=100,y=100)
-
-        self.AboutBtn = Button(self.venprincipal,text='About',command=lambda:openabout(None),fg='white',bg='blue', font=('Agency FB',12))
-        self.AboutBtn.place(x=100,y=100)
-
-        self.crearEscuderias = Button(self.venprincipal,text='Crear Escuderias',command=lambda:opencesc(None),fg='white',bg='blue', font=('Agency FB',12))
-        self.crearEscuderias.place(x=100,y=100)
-
-        self.salirBtn = Button(self.venprincipal,text="SALIR",command=lambda:salir(None),fg="red",bg= "Grey")
-        self.salirBtn.place(x=360,y=500)
+    
 
 class VenAbout:
     
@@ -85,6 +85,7 @@ class Escuderias:
         self.venver.title('Ver Piloto')
         self.venver.minsize(1000,700)
         self.venver.resizable(width=NO,height=NO)
+        
 
     def crear(self):
         self.vencrear=Toplevel()
@@ -110,8 +111,8 @@ class VenPilotos:
 
 
 main = venprincipal()
+main.botones()  
 main.setMainloop()
-    
 
 
 
